@@ -1,0 +1,324 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <meta name="description" content="My Bmob App">
+    <meta name="viewport" content="width=device-width">
+    <script type="text/javascript" src="lib/bmob-min.js"></script>
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/bmob.js"></script>
+
+    <style type="text/css">
+        body {
+
+            background-image: url("0.jpg");
+        }
+
+        .main {
+            width: 40%;
+            /*height: 60%;*/
+            left: 28%;
+            margin-top: 6%;
+            color: white;
+            position: relative;
+
+            /*border-style: inset;*/
+        }
+
+        #tr1 {
+            /*background-color: seashell;*/
+            font-family: SimSun;
+            font-size: 40px;
+            height: 50px;
+            /*text-align: center;*/
+            /*border-style: inset;*/
+            /*border-width: 5px 10px ;*/
+            /*padding: 10px*/
+        }
+
+        #img0 {
+            margin-left: 80px;
+            width: 50px;
+            height: 50px;
+            dipslay: table-cell;
+            vertical-align: middle
+        }
+
+        #img1 {
+            margin-left: 50px;
+            width: 30px;
+            height: 30px;
+        }
+
+        #img11 {
+            margin-left: 50px;
+            width: 30px;
+            height: 30px;
+        }
+
+        #img2 {
+            margin-left: 50px;
+            width: 30px;
+            height: 30px;
+        }
+
+        #input1 {
+            width: 360px;
+            height: 30px;
+            background-color: rgba(0, 0, 0, 0);;
+            color: #F5F5F5;
+            border-style: solid;
+            border-color: white;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 1px;
+            border-left-width: 0px
+        }
+
+        #input11 {
+            width: 360px;
+            height: 30px;
+            background-color: rgba(0, 0, 0, 0);;
+            color: #F5F5F5;
+            border-style: solid;
+            border-color: white;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 1px;
+            border-left-width: 0px
+        }
+
+        #input2 {
+            width: 360px;
+            height: 30px;
+            background-color: rgba(0, 0, 0, 0);
+            color: #F5F5F5;
+            border-style: solid;
+            border-color: white;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 1px;
+            border-left-width: 0px
+        }
+
+        #input3 {
+            width: 360px;
+            height: 30px;
+            background-color: rgba(0, 0, 0, 0);
+            color: #F5F5F5;
+            border-style: solid;
+            border-color: white;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 1px;
+            border-left-width: 0px
+        }
+
+        #input4 {
+            width: 280px;
+            height: 40px;
+            color: #fef4e9;
+            border: solid 1px #fef4e9;
+            background: black;
+            background: -webkit-gradient(linear, left top, left bottom, from(#999999), to(#111111));
+            border-radius: 15px;
+            font-size: 15px;
+            font-family: 新宋体;
+        }
+        #input4:hover {
+            background: #fef4e9;
+            background: -webkit-gradient(linear, left top, left bottom, from(#222222), to(#999999));
+        }
+        #input4:active {
+            color: #fef4e9;
+            background: -webkit-gradient(linear, left top, left bottom, from(#111111), to(#999999));
+        }
+
+    </style>
+</head>
+
+
+<body>
+<form id="formid">
+    <table class="main">
+        <tr id="tr1">
+            <th><a href="index.html"><img src="left.png" id="img0"></a></th>
+            <th style=" width: 400px;padding-right: 100px">注 册</th>
+        </tr>
+        <tr style="height: 30px"></tr>
+
+        <tr>
+            <th>
+                <img src="user.png" id="img1">
+            </th>
+            <th style="width: 480px;padding-right: 30px">
+                <input type="text" placeholder="用户名" id="input1" value="" onblur="upperCase()">
+            </th>
+        </tr>
+        <tr style="height: 50px">
+        </tr>
+
+        <tr>
+            <th>
+                <img src="email.png" id="img11">
+            </th>
+            <th style="width: 480px;padding-right: 30px">
+                <input type="text" placeholder="邮箱" id="input11" value="">
+            </th>
+        </tr>
+        <tr style="height: 50px"></tr>
+
+        <tr>
+            <th>
+                <img src="password.png" id="img2">
+            </th>
+            <th style="width: 480px;padding-right: 30px">
+                <input type="password" placeholder="密码" id="input2" value="">
+            </th>
+        </tr>
+        <tr style="height: 50px"></tr>
+
+        <tr>
+            <th>
+
+            </th>
+            <th style="width: 480px;padding-right: 30px">
+                <input type="password" placeholder="确认密码" id="input3" value="">
+            </th>
+        </tr>
+        <tr style="height: 50px"></tr>
+        <tr>
+            <th colspan="2">
+                <input type="button" value="注册" id="input4" onclick="clickHandler()">
+            </th>
+        </tr>
+        <tr style="height: 50px"></tr>
+
+    </table>
+</form>
+<script type="text/javascript">
+
+    //Bmob.initialize("Application ID", "REST API Key");
+    Bmob.initialize("b7a879f19d40ea814b100492cf686dab", "e828abe9385f66a5d290d5b4f0a5619a");
+
+    //	var TestObject = Bmob.Object.extend("TestObject");
+    //    var testObject = new TestObject();
+    //      testObject.save({foo: "bar"}, {
+    //      success: function(object) {
+    //        $(".success").show();
+    //      },
+    //      error: function(model, error) {
+    //        $(".error").show();
+    //      }
+    //    });
+
+  /*  var a=document.getElementById("input4");
+    a.setAttribute("id","zhuce");*/
+
+
+    //判断用户是否注册
+    function upperCase() {
+        var uname = document.getElementById("input1").value;
+        var GameScore = Bmob.Object.extend("user");
+        var query = new Bmob.Query(GameScore);
+        //查询单条数据
+        query.find({
+            success: function (results) {
+                for (var i = 0; i < results.length; i++) {
+                    var object = results[i];
+                    var a = object.get('uname');
+                    if (uname == a) {
+                        alert(uname + ' 用户已注册 ');
+//                       document.getElementById("remind_1").innerHTML = "用户已注册！";
+//                        window.location.reload();
+                        return false;
+                    }
+                }
+            },
+            error: function (object, error) {
+                // 查询失败
+            }
+        });
+    }
+
+    //注册
+    function clickHandler() {
+        var uname = document.getElementById("input1").value;
+        var email = document.getElementById("input11").value;
+        var password = document.getElementById("input2").value;
+        var password1 = document.getElementById("input3").value;
+        if (uname == "") {
+            alert("用户名不能为空");
+            return false;
+        }
+        if (email == "") {
+            alert("邮箱不能为空");
+            return false;
+        }
+        if (password == "") {
+            alert("密码不能为空");
+            return false;
+        }
+        if (password != password1) {
+            alert("密码不一致");
+            return false;
+        }
+        else {
+//            document.getElementById("formid").submit();
+            //user表添加数据
+            var GameScore = Bmob.Object.extend("user");
+            var gameScore = new GameScore();
+            gameScore.set("uname", uname);
+            gameScore.set("email", email);
+            gameScore.set("password", password);
+            gameScore.set("permission", "staff");
+            gameScore.save(null, {
+
+                success: function (object) {
+                    alert("注册成功" );
+                    window.location.reload();
+                },
+                error: function (model, error) {
+                    alert("注册失败");
+                }
+            })
+        }
+
+    }
+
+    /* 	//查询一行数据
+     var GameScore = Bmob.Object.extend("user");
+     var query = new Bmob.Query(GameScore);
+     // 查询所有数据
+     query.find({
+     success: function(results) {
+     alert("共查询到 " + results.length + " 条记录");
+     // 循环处理查询到的数据
+     for (var i = 0; i < results.length; i++) {
+     var object = results[i];
+     alert(object.id + ' - ' + object.get('uname'));
+     }
+     },
+     error: function(error) {
+     alert("查询失败: " + error.code + " " + error.message);
+     }
+
+     //查询单条数据，第一个参数是这条数据的objectId值
+     query.get("431f688df5", {
+     success: function(gameScore) {
+     // 查询成功，调用get方法获取对应属性的值
+     var uname = gameScore.get("uname");
+     var password = gameScore.get("password");
+     var permission = gameScore.get("permission");
+     alert(uname+' - '+password+' - '+permission);
+     },
+     error: function(object, error) {
+     // 查询失败
+     }
+     });*/
+
+
+</script>
+</body>
+</html>

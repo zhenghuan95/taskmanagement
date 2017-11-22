@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改密码</title>
+    <meta name="description" content="My Bmob App">
+    <meta name="viewport" content="width=device-width">
+    <script type="text/javascript" src="lib/bmob-min.js"></script>
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/bmob.js"></script>
+
+    <style type="text/css">
+        body {
+            background-image: url(0.jpg);
+        }
+
+        .main {
+            width: 40%;
+            left: 28%;
+            margin-top: 6%;
+            color: white;
+            position: relative;
+        }
+
+        #tr1 {
+            font-family: SimSun;
+            font-size: 40px;
+            height: 50px;
+        }
+
+        #img0 {
+            margin-left: 80px;
+            width: 50px;
+            height: 50px;
+            dipslay: table-cell;
+            vertical-align: middle
+        }
+
+        #img1 {
+            margin-left: 50px;
+            width: 30px;
+            height: 30px;
+        }
+
+        #img11 {
+            margin-left: 50px;
+            width: 30px;
+            height: 30px;
+        }
+
+        #img2 {
+            margin-left: 50px;
+            width: 30px;
+            height: 30px;
+        }
+
+        #input1 {
+            width: 360px;
+            height: 30px;
+            background-color: rgba(0, 0, 0, 0);
+            color: #F5F5F5;
+            border-style: solid;
+            border-color: white;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 1px;
+            border-left-width: 0px
+        }
+
+        #input11 {
+            width: 360px;
+            height: 30px;
+            background-color: rgba(0, 0, 0, 0);
+            color: #F5F5F5;
+            border-style: solid;
+            border-color: white;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 1px;
+            border-left-width: 0px
+        }
+
+        #input2 {
+            width: 360px;
+            height: 30px;
+            background-color: rgba(0, 0, 0, 0);
+            color: #F5F5F5;
+            border-style: solid;
+            border-color: white;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 1px;
+            border-left-width: 0px
+        }
+
+        #input3 {
+            width: 360px;
+            height: 30px;
+            background-color: rgba(0, 0, 0, 0);
+            color: #F5F5F5;
+            border-style: solid;
+            border-color: white;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 1px;
+            border-left-width: 0px
+        }
+
+        #input4 {
+            width: 280px;
+            height: 40px;
+            color: #fef4e9;
+            border: solid 1px #fef4e9;
+            background: black;
+            background: -webkit-gradient(linear, left top, left bottom, from(#999999), to(#111111));
+            border-radius: 15px;
+            font-size: 15px;
+            font-family: 新宋体;
+        }
+        #input4:hover {
+            background: #fef4e9;
+            background: -webkit-gradient(linear, left top, left bottom, from(#222222), to(#999999));
+        }
+        #input4:active {
+            color: #fef4e9;
+            background: -webkit-gradient(linear, left top, left bottom, from(#111111), to(#999999));
+        }
+
+
+
+    </style>
+</head>
+
+
+<body>
+<form id="formid">
+    <table class="main">
+        <tr id="tr1">
+            <th><a href="index.html"><img src="left.png" id="img0"></a></th>
+            <th style=" width: 400px;padding-right: 100px">找回密码</th>
+        </tr>
+        <tr style="height: 30px"></tr>
+
+        <tr>
+            <th>
+                <img src="user.png" id="img1">
+            </th>
+            <th style="width: 480px;padding-right: 30px">
+                <input type="text" placeholder="用户名" id="input1" value="" onblur="upperCase()">
+            </th>
+        </tr>
+        <tr style="height: 50px">
+        </tr>
+
+        <tr>
+            <th>
+                <img src="email.png" id="img11">
+            </th>
+            <th style="width: 480px;padding-right: 30px">
+                <input type="text" placeholder="邮箱" id="input11" value="" onblur="downCase()">
+            </th>
+        </tr>
+        <tr style="height: 50px"></tr>
+
+        <tr>
+            <th>
+                <img src="password.png" id="img2">
+            </th>
+            <th style="width: 480px;padding-right: 30px">
+                <input type="password" placeholder="新密码" id="input2" value="">
+            </th>
+        </tr>
+        <tr style="height: 50px"></tr>
+
+        <tr>
+            <th>
+
+            </th>
+            <th style="width: 480px;padding-right: 30px">
+                <input type="password" placeholder="重复密码" id="input3" value="">
+            </th>
+        </tr>
+        <tr style="height: 50px"></tr>
+        <tr>
+            <th colspan="2">
+                <input type="button" value="提交" id="input4" onclick="clickHandler()">
+            </th>
+        </tr>
+        <tr style="height: 50px"></tr>
+
+    </table>
+</form>
+<script type="text/javascript">
+
+    //Bmob.initialize("Application ID", "REST API Key");
+    Bmob.initialize("b7a879f19d40ea814b100492cf686dab", "e828abe9385f66a5d290d5b4f0a5619a");
+
+
+    //判断用户是否存在
+    function upperCase() {
+        var uname = document.getElementById("input1").value;
+        var GameScore = Bmob.Object.extend("user");
+        var query = new Bmob.Query(GameScore);
+        var flag = 0;
+        //查询单条数据
+        query.find({
+            success: function (results) {
+                for (var i = 0; i < results.length; i++) {
+                    var object = results[i];
+                    var a = object.get('uname');
+                    if (uname == a) {
+                        break;
+                    } else {
+                        flag++;
+                    }
+                }
+                if (flag == results.length) {
+                    alert("用户未注册");
+                }
+            },
+            error: function (object, error) {
+                // 查询失败
+            }
+        });
+    }
+
+    //判断邮箱是否正确
+    function downCase() {
+        var uname = document.getElementById("input1").value;
+        var email = document.getElementById("input11").value;
+        var GameScore = Bmob.Object.extend("user");
+        var query = new Bmob.Query(GameScore);
+        var flag = 0;
+        //查询单条数据
+        query.find({
+            success: function (result) {
+                for (var i = 0; i < result.length; i++) {
+                    var object = result[i];
+                    var a = object.get('uname');
+                    if (uname == a) {
+//                        console.log("已找到");
+                        var email1 = object.get('email');
+
+                        if (email != email1) {
+                            alert("邮箱错误");
+                        } else {
+                            console.log("邮箱正确");
+                        }
+                        break;
+                    }
+                }
+            },
+            error: function (object, error) {
+                // 查询失败
+                alert("查询失败: " + error.code + " " + error.message);
+            }
+        });
+    }
+
+    //修改密码
+    function clickHandler() {
+        var uname = document.getElementById("input1").value;
+        var email = document.getElementById("input11").value;
+        var password = document.getElementById("input2").value;
+        var password1 = document.getElementById("input3").value;
+        if (uname == "") {
+            alert("用户名不能为空");
+            return false;
+        }
+        if (email == "") {
+            alert("邮箱不能为空");
+            return false;
+        }
+        if (password == "") {
+            alert("新密码不能为空");
+            return false;
+        }
+        if (password != password1) {
+            alert("密码不一致");
+            return false;
+        }
+        else {
+//            document.getElementById("formid").submit();
+
+            var GameScore = Bmob.Object.extend("user");
+            var query = new Bmob.Query(GameScore);
+            query.find({
+                success: function (results) {
+                    for (var i = 0; i < results.length; i++) {
+                        var object = results[i];
+                        var a = object.get('uname');
+                        console.log(a);
+                        if (uname == a) {
+
+                            object.set("password", password);
+                            object.save(null, {
+                                success: function (object) {
+                                    alert("修改成功");
+                                    window.location.reload();
+                                },
+                                error: function (object, error) {
+                                    alert("失败");
+                                }
+                            });
+                            break;
+                        }
+                    }
+                },
+                error: function (object, error) {
+                    // 查询失败
+                    alert("查询失败: " + error.code + " " + error.message);
+                }
+            });
+        }
+
+    }
+
+
+</script>
+</body>
+</html>

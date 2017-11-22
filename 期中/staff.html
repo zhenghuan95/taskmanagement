@@ -1,0 +1,813 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>员工界面</title>
+    <meta name="description" content="My Bmob App">
+    <meta name="viewport" content="width=device-width">
+    <script type="text/javascript" src="lib/bmob-min.js"></script>
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/bmob.js"></script>
+    <script type="text/javascript" src="lib/bmobSocketIo.js"></script>
+    <script type="text/javascript" src="lib/bmobSocketIo-min.js"></script>
+
+    <style>
+        body {
+            height: 100%;
+            background-image: url(0.jpg);
+        }
+
+        #left {
+            width: 15%;
+            height: 70%;
+            margin-top: 5%;
+            background-color: rgba(36, 41, 44, 0.75);
+            float: left;
+            margin-left: 15%;
+        }
+
+        .tableleft {
+            width: 100%;
+            color: white;
+            position: relative;
+            /*border: black 1px solid;*/
+        }
+
+        #table2 {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 楷体;
+            font-size: 17px;
+        }
+
+        #tr1 {
+            height: 40px;
+        }
+
+        #th1 {
+            width: 100%;
+            height: 120px;
+            font-size: 20px;
+            font-family: 华文楷体;
+            background-color: rgba(19, 19, 19, 0.75);
+            border-bottom: rgba(68, 69, 71, 0.66) 1px solid;
+        }
+
+        #img0 {
+            width: 30px;
+            height: 30px;
+        }
+
+        #img20 {
+            width: 30px;
+            height: 30px;
+            margin-right: 30px;
+        }
+
+        #td200 {
+            height: 70px;
+            border-bottom: rgba(68, 69, 71, 0.66) 1px solid;
+            width: 50%;
+        }
+
+        #td20 {
+            height: 70px;
+            border-bottom: rgba(68, 69, 71, 0.66) 1px solid;
+            width: 50%;
+        }
+
+        #td210 {
+            height: 50px;
+            border-bottom: rgba(68, 69, 71, 0.66) 1px solid;
+
+        }
+
+        #td21 {
+            height: 50px;
+            border-bottom: rgba(68, 69, 71, 0.66) 1px solid;
+
+        }
+
+        #td22 {
+            height: 50px;
+            border-bottom: rgba(68, 69, 71, 0.66) 1px solid;
+        }
+
+        #td222 {
+            height: 50px;
+            border-bottom: rgba(68, 69, 71, 0.66) 1px solid;
+        }
+
+        #td23 {
+            height: 180px;
+            /*border-bottom: #6CA6CD 1px solid;*/
+        }
+
+        #right {
+            width: 55%;
+            height: 70%;
+            margin-top: 5%;
+            background-color: white;
+            float: left;
+        }
+
+        #table3 {
+            height: 100%;
+            width: 100%;
+            background-color: white;
+        }
+
+        #tr3 {
+            /*height: 80%;*/
+            background-color: #F5F5F5;
+        }
+
+        #table40 {
+            width: 700px;
+            background-color: white;
+            /*margin:0 auto;*/
+            /*margin-top: 10px;*/
+            position: relative;
+            top: 30px;
+            left: 60px;
+            border-collapse: collapse;
+            font-family: 楷体;
+        }
+
+        #table40 td {
+            height: 50px;
+            border-bottom: rgba(68, 69, 71, 0.66) 1px solid;
+        }
+
+        #tr40 {
+            height: 40px;
+            color: white;
+            background-color: rgba(60, 60, 62, 0.66);
+            text-align: center;
+            font-size: 17px;
+        }
+
+        #table41 {
+            width: 700px;
+            background-color: white;
+            /*margin:0 auto;*/
+            /*margin-top: 10px;*/
+            position: relative;
+            top: 30px;
+            left: 60px;
+            border-collapse: collapse;
+            font-family: 楷体;
+        }
+
+        #table41 td {
+            height: 50px;
+            border-bottom: rgba(68, 69, 71, 0.66) 1px solid;
+        }
+
+        #tr41 {
+            height: 40px;
+            color: white;
+            background-color: rgba(60, 60, 62, 0.66);
+            text-align: center;
+            font-size: 17px;
+        }
+
+        #table42 {
+            width: 700px;
+            background-color: white;
+            /*margin-top: 10px;*/
+            position: relative;
+            top: 30px;
+            left: 60px;
+            border-collapse: collapse;
+            font-family: 楷体;
+        }
+
+        #table42 td {
+            height: 50px;
+            border-bottom: rgba(68, 69, 71, 0.66) 1px solid;
+        }
+
+        #tr42 {
+            height: 40px;
+            color: white;
+            background-color: rgba(60, 60, 62, 0.66);
+            text-align: center;
+            font-size: 17px;
+        }
+
+        #table43 {
+            height: 450px;
+            width: 500px;
+            background-color: white;
+            /*margin:0 auto;*/
+            /*margin-top: 10px;*/
+            position: relative;
+            top: 30px;
+            left: 160px;
+            /*border-collapse: collapse;*/
+            font-family: 楷体;
+        }
+
+        #tr43 {
+            height: 40px;
+            color: white;
+            background-color: rgba(60, 60, 62, 0.66);
+            text-align: center;
+            font-size: 17px;
+        }
+
+        #input43 {
+            width: 180px;
+            height: 30px;
+        }
+
+        #input44 {
+            width: 200px;
+            height: 40px;
+            background-color: rgba(11, 13, 8, 0.75);
+            border-radius: 15px;
+            color: white;
+            font-size: 18px;
+            font-family: 楷体;
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        a:link {
+            color: #A8A8A8
+        }
+
+        /* 未访问的链接 */
+        a:visited {
+            color: #A8A8A8
+        }
+
+        /* 已访问的链接 */
+        a:hover {
+            color: #0000FF
+        }
+
+        /* 鼠标移动到链接上*/
+        a:active {
+            color: #0000FF
+        }
+
+        .active {
+            background-color: rgba(25, 29, 32, 0.75);
+        }
+    </style>
+</head>
+<body>
+<div id="left">
+    <table class="tableleft">
+        <tr>
+            <th>
+                <table id="table2">
+                    <tr id="tr1">
+                        <th id="th1" colspan="2">
+                            <div><img src="top.png" id="img0"></div>
+                            <div>工作任务管理系统</div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td id="td200" align="right"><img src="man.png" id="img20"></td>
+                        <td id="td20" align="left"></td>
+                    </tr>
+                    <tr>
+                        <td id="td210" colspan="2" onclick="task()" name="change" class="active">未完成任务</td>
+                    </tr>
+                    <tr>
+                        <td id="td21" colspan="2" onclick="finish()" name="change">已完成任务</td>
+                    </tr>
+                    <tr>
+                        <td id="td22" colspan="2" onclick="staff()" name="change">人员信息</td>
+                    </tr>
+                    <tr>
+                        <td id="td222" colspan="2" onclick="people()" name="change">个人信息</td>
+                    </tr>
+                    <tr>
+                        <td id="td23" colspan="2"></td>
+                    </tr>
+                </table>
+            </th>
+
+        </tr>
+    </table>
+</div>
+<div id="right">
+    <table id="table3">
+        <tr>
+            <td id="time1" style="color:  rgba(60, 60, 62, 0.66);font-size: 5px;height: 40px;width: 750px"
+                align="right"></td>
+            <td style="font-size: 5px;padding-left: 5px"><a href="index.html">[退出]</a></td>
+        </tr>
+        <tr id="tr3">
+            <th style="height:536px ;padding: 0" colspan="2">
+                <div style="display: inline-block ; overflow-y: scroll;height: 538px; width: 823px; " id="div0">
+                    <table id="table40" style="table-layout:fixed;">
+                        <tr id="tr40">
+                            <th width="80px">序号</th>
+                            <th width="90px">姓名</th>
+                            <th>任务</th>
+                            <th width="80px">状态</th>
+                            <th>截止时间</th>
+                            <th width="90px"></th>
+                        </tr>
+                        <tbody id="tbody0">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <div style="display: none ; overflow-y: scroll;height: 538px; width: 823px; " id="div1">
+                    <table id="table41" style="table-layout:fixed;">
+                        <tr id="tr41">
+                            <th width="80px">序号</th>
+                            <th width="90px">姓名</th>
+                            <th>任务</th>
+                            <th width="80px">状态</th>
+                            <th>截止时间</th>
+                        </tr>
+                        <tbody id="tbody">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <div style="display:none;overflow-y: scroll;height: 538px; width: 823px; " id="div2">
+                    <table id="table42">
+                        <tr id="tr42">
+                            <th width="60px">序号</th>
+                            <th width="200px">姓名</th>
+                            <th width="200px">部门</th>
+                            <th width="200px">职能</th>
+                        </tr>
+                        <tbody id="tbody2">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="display:none;height: 538px; width: 823px; " id="div3">
+                    <form id="formid1">
+                        <table id="table43" style="table-layout:fixed">
+                            <tr id="tr43">
+                                <th colspan="2">信息修改</th>
+
+                            </tr>
+                            <tr>
+                                <td width="50px">姓名</td>
+                                <td id="td41">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50px">部门</td>
+                                <td id="td43"></td>
+                            </tr>
+                            <tr>
+                                <td width="50px">邮箱</td>
+                                <td id="td42"></td>
+                            </tr>
+                            <tr>
+                                <td width="50px">修改密码</td>
+                                <td><input type="text" id="input43" value=""></td>
+                            </tr>
+                            <tr>
+                                <th colspan="2">
+                                    <input type="button" value="确认修改" id="input44" onclick="clickHand()">
+                                </th>
+                            </tr>
+
+                        </table>
+                    </form>
+                </div>
+            </th>
+        </tr>
+    </table>
+</div>
+
+<script type="text/javascript">
+    Bmob.initialize("b7a879f19d40ea814b100492cf686dab", "e828abe9385f66a5d290d5b4f0a5619a");
+
+
+    var sid = localStorage.getItem('uname');
+    //document.write('传递过来的id是：'+sid);
+    document.getElementById("td20").innerHTML = sid;
+    document.getElementById("td41").innerHTML = sid;
+
+
+    //本地时间
+    function mytime() {
+        var a = new Date();
+        var b = a.toLocaleTimeString();
+        var c = a.toLocaleDateString();
+        document.getElementById("time1").innerHTML = c + "&nbsp" + b;
+    }
+    setInterval(function () {
+        mytime()
+    }, 1000);//刷新
+
+    //首次打开展示列表
+    var GameScore = Bmob.Object.extend("task");
+    var query = new Bmob.Query(GameScore);
+    // 查询所有数据
+    query.find({
+        success: function (results) {
+//                alert("共查询到 " + results.length + " 条记录");
+            // 循环处理查询到的数据
+            var str = "<table>";
+            var num = 0;
+            for (var i = 0; i < results.length; i++) {
+                var object = results[i];
+                var uname = object.get('uname');
+                if (uname == sid) {
+                    var condition = object.get('condition');
+                    if (condition == "未完成") {
+                        var uname = object.get('uname');
+                        var content = object.get('content');
+                        var date = object.get('date');
+                        var button = "提交";
+                        var num = num + 1;
+                        str += "<tr><td>" + num + "</td><td>" + uname + "</td><td>" + content + "</td><td>" + condition + "</td><td>" + date + "</td><td>" + "<button name='checked' id='input'  onclick='finished()'>" + button + "</button></td></tr>";//
+//                     document.getElementsByName('checked')[i].setAttribute("name","num");
+
+                        document.getElementById("tbody0").innerHTML = str
+                    }
+                }
+            }
+            //修改按钮的name
+            var but = document.getElementsByTagName('button');
+            for (i = 0; i < but.length; i++) {
+                but[i].setAttribute("name", i + 1);
+//                var b= but[i].getAttribute("name");
+//                console.log(b);
+            }
+            str += "</table>";
+        },
+        error: function (error) {
+            alert("查询失败: " + error.code + " " + error.message);
+        }
+    });
+
+
+    //任务提交按钮
+    function finished() {
+        document.body.onclick = function (event) {    //获取按钮的name
+            let name = event.target.name;
+//            console.log(name);
+
+            var tableObj = document.getElementById("tbody0");
+            //获取表格中的所有行
+            var trObjArr = tableObj.rows;
+//            console.log(trObjArr);
+            for (var i = 0; i < trObjArr.length; i++) {
+                var first = trObjArr[i].innerText[0];
+                if (first == name) {
+                    console.log(trObjArr[i].innerText);
+                    var content = trObjArr[i].children[2].innerText;
+                    console.log(content);
+                }
+            }
+
+            var GameScore = Bmob.Object.extend("task");
+            var query = new Bmob.Query(GameScore);
+            query.find({
+                success: function (results) {
+                    for (var i = 0; i < results.length; i++) {
+                        var object = results[i];
+                        var a = object.get('content');
+                        if (content == a) {
+                            object.set("condition", "已完成");
+                            object.save(null, {
+                                success: function (objectUpdate) {
+                                    alert("修改完成");
+                                    window.location.reload();
+                                },
+                                error: function (model, error) {
+                                    alert("create object fail");
+                                }
+                            });
+                            break;
+                        }
+                    }
+
+                },
+                error: function (object, error) {
+                    // 查询失败
+                }
+            });
+        }
+    }
+
+
+    //功能切换
+    function task() {
+        var but = document.getElementsByName('change');
+//        console.log(but);
+        for (var i = 0; i < but.length; i++) {
+            but[i].className = '';//遍历清空所有按钮上的类名
+        }
+        document.getElementById("td210").className = 'active';//只给当前点击的按钮添加类名
+
+        document.getElementById("div0").style.display = "inline-block";
+        document.getElementById("div1").style.display = "none";
+        document.getElementById("div2").style.display = "none";
+        document.getElementById("div3").style.display = "none";
+
+        var GameScore = Bmob.Object.extend("task");
+        var query = new Bmob.Query(GameScore);
+        // 查询所有数据
+        query.find({
+            success: function (results) {
+//                alert("共查询到 " + results.length + " 条记录");
+                // 循环处理查询到的数据
+                var str = "<table>";
+                var num = 0;
+                for (var i = 0; i < results.length; i++) {
+                    var object = results[i];
+                    var uname = object.get('uname');
+                    if (uname == sid) {
+                        var condition = object.get('condition');
+                        if (condition == "未完成") {
+                            var uname = object.get('uname');
+                            var content = object.get('content');
+                            var date = object.get('date');
+                            var button = "提交";
+                            var num = num + 1;
+                            str += "<tr><td>" + num + "</td><td>" + uname + "</td><td>" + content + "</td><td>" + condition + "</td><td>" + date + "</td><td>" + "<button name='checked' id='input'  onclick='finished()'>" + button + "</button></td></tr>";//
+//                     document.getElementsByName('checked')[i].setAttribute("name","num");
+
+                            document.getElementById("tbody0").innerHTML = str
+                        }
+                    }
+                }
+                //修改按钮的name
+                var but = document.getElementsByTagName('button');
+                for (i = 0; i < but.length; i++) {
+                    but[i].setAttribute("name", i + 1);
+//                var b= but[i].getAttribute("name");
+//                console.log(b);
+                }
+                str += "</table>";
+            },
+            error: function (error) {
+                alert("查询失败: " + error.code + " " + error.message);
+            }
+        })
+    }
+
+    function finish() {
+        var but = document.getElementsByName('change');
+//        console.log(but);
+        for (var i = 0; i < but.length; i++) {
+            but[i].className = '';//遍历清空所有按钮上的类名
+        }
+        document.getElementById("td21").className = 'active';//只给当前点击的按钮添加类名
+
+        document.getElementById("div0").style.display = "none";
+        document.getElementById("div1").style.display = "inline-block";
+        document.getElementById("div2").style.display = "none";
+        document.getElementById("div3").style.display = "none";
+
+        var GameScore = Bmob.Object.extend("task");
+        var query = new Bmob.Query(GameScore);
+        // 查询所有数据
+        query.find({
+            success: function (results) {
+//                alert("共查询到 " + results.length + " 条记录");
+                // 循环处理查询到的数据
+                var str = "<table>";
+                var num = 0;
+                for (var i = 0; i < results.length; i++) {
+                    var object = results[i];
+                    var uname = object.get('uname');
+                    if (uname == sid) {
+                        var condition = object.get('condition');
+                        if (condition == "已完成") {
+                            var uname = object.get('uname');
+                            var content = object.get('content');
+                            var condition = object.get('condition');
+                            var date = object.get('date');
+                            var num = num + 1;
+                            str += "<tr><td>" + num + "</td><td>" + uname + "</td><td>" + content + "</td><td>" + condition + "</td><td>" + date + "</td></tr>";
+                            document.getElementById("tbody").innerHTML = str
+                        }
+                    }
+                }
+                str += "</table>";
+            },
+            error: function (error) {
+                alert("查询失败: " + error.code + " " + error.message);
+            }
+        })
+    }
+
+    function staff() {
+        var but = document.getElementsByName('change');
+//        console.log(but);
+        for (i = 0; i < but.length; i++) {
+            but[i].className = '';//遍历清空所有按钮上的类名
+        }
+        document.getElementById("td22").className = 'active';//只给当前点击的按钮添加类名
+
+        document.getElementById("div0").style.display = "none";
+        document.getElementById("div1").style.display = "none";
+        document.getElementById("div2").style.display = "inline-block";
+        document.getElementById("div3").style.display = "none";
+
+        var GameScore = Bmob.Object.extend("department");
+        var query = new Bmob.Query(GameScore);
+        // 查询所有数据
+        query.find({
+            success: function (results) {
+//                alert("共查询到 " + results.length + " 条记录");
+                // 循环处理查询到的数据
+                var str = "<table>";
+                for (var i = 0; i < results.length; i++) {
+                    var object = results[i];
+                    var uname = object.get('uname');
+                    var job = object.get('job');
+                    var dname = object.get('dname');
+                    var num = i + 1;
+//                    alert(i + ' - ' + uname + ' - ' + content+ ' - ' + condition);
+                    str += "<tr><td>" + num + "</td><td>" + uname + "</td><td>" + dname + "</td><td>" + job + "</td></tr>";
+                    document.getElementById("tbody2").innerHTML = str;
+                }
+                str += "</table>";
+            },
+            error: function (error) {
+                alert("查询失败: " + error.code + " " + error.message);
+            }
+        })
+    }
+
+    function people() {
+        var but = document.getElementsByName('change');
+//        console.log(but);
+        for (var i = 0; i < but.length; i++) {
+            but[i].className = '';//遍历清空所有按钮上的类名
+        }
+        document.getElementById("td222").className = 'active';//只给当前点击的按钮添加类名
+
+        document.getElementById("div0").style.display = "none";
+        document.getElementById("div1").style.display = "none";
+        document.getElementById("div2").style.display = "none";
+        document.getElementById("div3").style.display = "inline-block";
+
+        //个人信息界面
+        var user = Bmob.Object.extend("user");
+        var query = new Bmob.Query(user);
+        query.find({
+            success: function (result) {
+//                    alert("共查询到 " + result.length + " 条记录");
+                for (var i = 0; i < result.length; i++) {
+                    var object = result[i];
+                    var a = object.get('uname');
+
+                    if (sid == a) {
+                        var email = object.get('email');
+                        document.getElementById("td42").innerHTML = email;
+                        console.log("已找到");
+
+                        break;
+                    }
+                }
+            },
+            error: function (object, error) {
+                // 查询失败
+                alert("查询失败: " + error.code + " " + error.message);
+            }
+        });
+
+        var department = Bmob.Object.extend("department");
+        var query1 = new Bmob.Query(department);
+        query1.find({
+            success: function (result) {
+                for (var i = 0; i < result.length; i++) {
+                    var object = result[i];
+                    var a = object.get('uname');
+
+                    if (sid == a) {
+                        var dname = object.get('dname');
+                        document.getElementById("td43").innerHTML = dname;
+                        console.log("已找到");
+
+                        break;
+                    }
+                }
+            },
+            error: function (object, error) {
+                // 查询失败
+                alert("查询失败: " + error.code + " " + error.message);
+            }
+        });
+    }
+
+    function clickHand() {
+        var password = document.getElementById("input43").value;
+        if (password == '') {
+            alert("空的啦！");
+        } else {
+            var user = Bmob.Object.extend("user");
+            var query = new Bmob.Query(user);
+            query.find({
+                success: function (result) {
+//                    alert("共查询到 " + result.length + " 条记录");
+                    for (var i = 0; i < result.length; i++) {
+                        var object = result[i];
+                        var a = object.get('uname');
+//                    console.log("已找到");
+                        if (sid == a) {
+
+                            object.set("password", password);
+                            object.save(null, {
+                                success: function (object) {
+                                    alert("修改成功");
+                                    window.location.reload();
+                                },
+                                error: function (object, error) {
+                                    alert("失败");
+                                }
+                            });
+                            break;
+                        }
+                    }
+                },
+                error: function (object, error) {
+                    // 查询失败
+                    alert("查询失败: " + error.code + " " + error.message);
+                }
+            });
+        }
+    }
+
+    //        var GameScore = Bmob.Object.extend("department");
+    //        var query = new Bmob.Query(GameScore);
+    //        // 查询所有数据
+    //        query.find({
+    //            success: function (results) {
+    ////                console.log(results);
+    ////                alert("共查询到 " + results.length + " 条记录");
+    //                // 循环处理查询到的数据
+    //                var str = "<select>";
+    ////                var objSelectNow = document.getElementById("input0");
+    ////                var inner = "<option value=''></option>";
+    ////                objSelectNow.innerHTML = inner;
+    ////                for (var i = 0; i < results.length; i++) {
+    ////                    var object = results[i];
+    ////                    let dname1 = object.get('dname');
+    ////
+    ////                    var objOption = document.createElement("OPTION");
+    ////                    objOption.text = dname1;
+    ////                    objOption.value = dname1;
+    ////                    console.log(dname1);
+    ////                    objSelectNow.options.add(objOption);
+
+    //    let uname = document.getElementById("input1").value;
+    //    var GameScore = Bmob.Object.extend("department");
+    //    var query = new Bmob.Query(GameScore);
+    //    // 查询所有数据
+    //    query.find({
+    //        success: function (results) {
+    //
+    //            var str = "<select>";
+    //            for (var i = 0; i < results.length; i++) {
+    //                var object = results[i];
+    //                var uname = object.get('uname');
+    //                var dname = object.get('dname');
+    //                console.log(uname + "人员已找到");
+    //                str += "<option>" + uname + "</option>";
+    //                document.getElementById("input1").innerHTML = str;
+    //                document.getElementById("input1").value = str;
+    //            }
+    //            str += "</select>";
+    //        },
+    //        error: function (error) {
+    //            alert("查询失败: " + error.code + " " + error.message);
+    //        }
+    //    });
+
+
+</script>
+</body>
+</html>
